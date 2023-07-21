@@ -1,8 +1,8 @@
-package com.example.infrastructure.repositories;
+package com.visibility.infrastructure.repositories;
 
-import com.example.infrastructure.dto.ProductDto;
-import com.example.infrastructure.dto.SizeDto;
-import com.example.infrastructure.dto.StockDto;
+import com.visibility.infrastructure.repositories.dto.ProductDto;
+import com.visibility.infrastructure.repositories.dto.SizeDto;
+import com.visibility.infrastructure.repositories.dto.StockDto;
 import com.visibility.domain.entities.product.Product;
 import com.visibility.domain.entities.product.ProductId;
 import com.visibility.domain.entities.product.ProductPriorityPosition;
@@ -20,15 +20,16 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.example.infrastructure.util.CsvReaderUtil.readCsvFile;
+import static com.visibility.infrastructure.util.CsvReaderUtil.readCsvFile;
 
 @Repository
 public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public Flux<Product> retrieveAllProducts() {
-        String productFilePath = "src/main/resources/product.csv";
-        String sizeFilePath = "src/main/resources/size.csv";
-        String stockFilePath = "src/main/resources/stock.csv";
+        String productFilePath = getResourcePath("product.csv");
+        String sizeFilePath = getResourcePath("size.csv");
+        String stockFilePath = getResourcePath("stock.csv");
+
 
         Flux<ProductDto> productFlux = readCsvFile(productFilePath, ProductDto.class);
         Flux<SizeDto> sizeFlux = readCsvFile(sizeFilePath, SizeDto.class);
@@ -36,6 +37,11 @@ public class ProductRepositoryImpl implements ProductRepository {
 
         return Flux.zip(productFlux.collectList(), sizeFlux.collectList(), stockFlux.collectList())
                 .flatMapSequential(tuple -> Flux.fromIterable(generateResult(tuple.getT1(), tuple.getT2(), tuple.getT3())));
+    }
+
+    private String getResourcePath(String fileName) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        return classLoader.getResource(fileName).getPath();
     }
 
     public List<Product> generateResult(List<ProductDto> productDtos, List<SizeDto> sizeDtos, List<StockDto> stockDtos) {

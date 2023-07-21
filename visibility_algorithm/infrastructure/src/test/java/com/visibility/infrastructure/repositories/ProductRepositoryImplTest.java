@@ -1,6 +1,7 @@
-package com.example.infrastructure.repositories;
+package com.visibility.infrastructure.repositories;
 
 import com.visibility.domain.entities.product.Product;
+import com.visibility.infrastructure.repositories.ProductRepositoryImpl;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import reactor.core.publisher.Flux;

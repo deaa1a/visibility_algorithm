@@ -1,4 +1,4 @@
-package com.example.infrastructure.dto;
+package com.visibility.infrastructure.repositories.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
