@@ -17,6 +17,7 @@ import reactor.core.publisher.Flux;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.example.infrastructure.util.CsvReaderUtil.readCsvFile;
@@ -74,6 +75,6 @@ public class ProductRepositoryImpl implements ProductRepository {
                 .findFirst()
                 .orElse(0);
 
-        return Size.builder().id(sizeId).isBackSoon(isBackSoon).quantity(SizeQuantity.builder().value(quantity).build()).isSpecialSize(isSpecialSize).build();
+        return Size.builder().id(sizeId).isBackSoon(isBackSoon).quantity(Optional.ofNullable(SizeQuantity.builder().value(quantity).build())).isSpecialSize(isSpecialSize).build();
     }
 }

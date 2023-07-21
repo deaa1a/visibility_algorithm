@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,12 +21,14 @@ public class ProductTest {
         // GIVE
         Size size1 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.TRUE).build())
-                .quantity(SizeQuantity.builder().value(0).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(0).build()))
+                .isSpecialSize(SizeSpecial.builder().value(Boolean.FALSE).build())
                 .build();
 
         Size size2 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.FALSE).build())
-                .quantity(SizeQuantity.builder().value(0).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(0).build()))
+                .isSpecialSize(SizeSpecial.builder().value(Boolean.FALSE).build())
                 .build();
 
         List<Size> sizes = Arrays.asList(size1, size2);
@@ -43,12 +46,13 @@ public class ProductTest {
         // GIVE
         Size size1 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.FALSE).build())
-                .quantity(SizeQuantity.builder().value(5).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(5).build()))
+                .isSpecialSize(SizeSpecial.builder().value(Boolean.FALSE).build())
                 .build();
 
         Size size2 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.FALSE).build())
-                .quantity(SizeQuantity.builder().value(5).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(5).build()))
                 .build();
 
         List<Size> sizes = Arrays.asList(size1, size2);
@@ -67,13 +71,13 @@ public class ProductTest {
         Size size1 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.FALSE).build())
                 .isSpecialSize(SizeSpecial.builder().value(Boolean.TRUE).build())
-                .quantity(SizeQuantity.builder().value(1).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(1).build()))
                 .build();
 
         Size size2 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.FALSE).build())
                 .isSpecialSize(SizeSpecial.builder().value(Boolean.FALSE).build())
-                .quantity(SizeQuantity.builder().value(0).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(0).build()))
                 .build();
 
         List<Size> sizes = Arrays.asList(size1, size2);
@@ -93,13 +97,13 @@ public class ProductTest {
         Size size1 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.TRUE).build())
                 .isSpecialSize(SizeSpecial.builder().value(Boolean.TRUE).build())
-                .quantity(SizeQuantity.builder().value(0).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(0).build()))
                 .build();
 
         Size size2 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.FALSE).build())
                 .isSpecialSize(SizeSpecial.builder().value(Boolean.FALSE).build())
-                .quantity(SizeQuantity.builder().value(0).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(0).build()))
                 .build();
 
         List<Size> sizes = Arrays.asList(size1, size2);
@@ -118,13 +122,13 @@ public class ProductTest {
         Size size1 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.TRUE).build())
                 .isSpecialSize(SizeSpecial.builder().value(Boolean.FALSE).build())
-                .quantity(SizeQuantity.builder().value(0).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(0).build()))
                 .build();
 
         Size size2 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.FALSE).build())
                 .isSpecialSize(SizeSpecial.builder().value(Boolean.FALSE).build())
-                .quantity(SizeQuantity.builder().value(0).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(0).build()))
                 .build();
 
         List<Size> sizes = Arrays.asList(size1, size2);
@@ -143,13 +147,13 @@ public class ProductTest {
         Size size1 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.FALSE).build())
                 .isSpecialSize(SizeSpecial.builder().value(Boolean.TRUE).build())
-                .quantity(SizeQuantity.builder().value(0).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(0).build()))
                 .build();
 
         Size size2 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.FALSE).build())
                 .isSpecialSize(SizeSpecial.builder().value(Boolean.FALSE).build())
-                .quantity(SizeQuantity.builder().value(0).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(0).build()))
                 .build();
 
         List<Size> sizes = Arrays.asList(size1, size2);
@@ -170,13 +174,13 @@ public class ProductTest {
         Size size1 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.TRUE).build())
                 .isSpecialSize(SizeSpecial.builder().value(Boolean.FALSE).build())
-                .quantity(SizeQuantity.builder().value(0).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(0).build()))
                 .build();
 
         Size size2 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.FALSE).build())
                 .isSpecialSize(SizeSpecial.builder().value(Boolean.TRUE).build())
-                .quantity(SizeQuantity.builder().value(0).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(0).build()))
                 .build();
 
         List<Size> sizes = Arrays.asList(size1, size2);
@@ -195,13 +199,13 @@ public class ProductTest {
         Size size1 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.FALSE).build())
                 .isSpecialSize(SizeSpecial.builder().value(Boolean.FALSE).build())
-                .quantity(SizeQuantity.builder().value(2).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(2).build()))
                 .build();
 
         Size size2 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.FALSE).build())
                 .isSpecialSize(SizeSpecial.builder().value(Boolean.TRUE).build())
-                .quantity(SizeQuantity.builder().value(0).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(0).build()))
                 .build();
 
         List<Size> sizes = Arrays.asList(size1, size2);
@@ -220,13 +224,13 @@ public class ProductTest {
         Size size1 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.FALSE).build())
                 .isSpecialSize(SizeSpecial.builder().value(Boolean.FALSE).build())
-                .quantity(SizeQuantity.builder().value(0).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(0).build()))
                 .build();
 
         Size size2 = Size.builder()
                 .isBackSoon(SizeBackSoon.builder().value(Boolean.FALSE).build())
                 .isSpecialSize(SizeSpecial.builder().value(Boolean.TRUE).build())
-                .quantity(SizeQuantity.builder().value(0).build())
+                .quantity(Optional.of(SizeQuantity.builder().value(0).build()))
                 .build();
 
         List<Size> sizes = Arrays.asList(size1, size2);
