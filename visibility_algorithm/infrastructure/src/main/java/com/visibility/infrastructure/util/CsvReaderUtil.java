@@ -1,4 +1,4 @@
-package com.example.infrastructure.util;
+package com.visibility.infrastructure.util;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
