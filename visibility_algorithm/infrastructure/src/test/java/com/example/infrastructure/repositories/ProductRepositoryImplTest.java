@@ -21,11 +21,11 @@ public class ProductRepositoryImplTest {
 
         // Then
         StepVerifier.create(productFlux)
-                .expectNextMatches(product1 -> product1.getId().getValue() == 1L) // Verify the first product emitted
-                .expectNextMatches(product2 -> product2.getId().getValue() == 2L) // Verify the second product emitted
-                .expectNextMatches(product3 -> product3.getId().getValue() == 3L) // Verify the third product emitted
-                .expectNextMatches(product4 -> product4.getId().getValue() == 4L) // Verify the third product emitted
-                .expectNextMatches(product5 -> product5.getId().getValue() == 5L) // Verify the third product emitte
-                .verifyComplete(); //
+                .expectNextMatches(product1 -> product1.getId().getValue() == 1L && product1.getPosition().getValue() == 10 && product1.getSizes().size() == 3)
+                .expectNextMatches(product2 -> product2.getId().getValue() == 2L && product2.getPosition().getValue() == 7 && product2.getSizes().size() == 3)
+                .expectNextMatches(product3 -> product3.getId().getValue() == 3L && product3.getPosition().getValue() == 15 && product3.getSizes().size() == 3)
+                .expectNextMatches(product4 -> product4.getId().getValue() == 4L && product4.getPosition().getValue() == 13 && product4.getSizes().size() == 4)
+                .expectNextMatches(product5 -> product5.getId().getValue() == 5L && product5.getPosition().getValue() == 6 && product5.getSizes().size() == 4)
+                .verifyComplete();
     }
 }
