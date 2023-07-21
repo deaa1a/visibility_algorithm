@@ -12,6 +12,4 @@ public class Size {
     private SizeQuantity quantity;
     private SizeSpecial isSpecialSize;
 
-
-
 }
