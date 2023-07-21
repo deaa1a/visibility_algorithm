@@ -8,4 +8,7 @@ public class GetAvailableProducts {
 
     private ProductRepository productRepository;
 
+
+
+
 }
