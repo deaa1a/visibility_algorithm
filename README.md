@@ -14,7 +14,7 @@ The most relevant technologies that I used were :
 
 ## Architecture
 
-I faced this challenge thinking in define a hexagonal architecture , for this reason in the code you will find the following modules:
+I faced this challenge thinking in define an hexagonal architecture , for this reason in the code you will find the following modules:
 
 - Domain
 - Application
@@ -23,7 +23,7 @@ I faced this challenge thinking in define a hexagonal architecture , for this re
 Where there are clear rules about the hierarchy of visibility beetween them, something that implicitly promotes  SOLID principles.
 
 
-We star talk about infrastructure module , this module can access to application and domain modules
+We star talking about infrastructure module , this module can access to application and domain modules
 
 ```mermaid
 flowchart LR
@@ -45,7 +45,7 @@ The domain is the layer where we will write the most important logic related to 
 
 Here we find the definition of two relevant points input and output , regarding input there is a class called ProductRepositoryImpl , in this one I implemented the code necessary to read the source data from csv files.
 
-The other implementation in this module is the output of the logic processing, for this I created an endpoint in the ProductController class with the following path `/products/available`
+The other implementation in this module is the output of the logic processing, for this I created an endpoint in the ProductController class with the following path `/api/v1/products/available`
 
 
 ## Application
@@ -87,8 +87,6 @@ crees que tiene? ¿Consideras que se podría mejorar de alguna manera?
 Respuesta : Analizaria esta complejidad temporal desde 3 frentes , la lectura de los datos , el procesamiento de los datos a nivel de logica y finalmente la presentación de estos en el ednpoint creado.
 
 Pienso que la complejidad temporal para este ejercicio esta bien y pensando un poco en esto decidí usar flujos de datos que nos permite tener complejiad O(n) , sin embargo la solución esta abierta cambios , por ejemplo en la lectura de los datos se pasa de un flujo de datos a listas y luego nuevamente a un flujo , este es un primer aspecto de mejora para impactar directamente en esta medida, otra podria ser en el modulo de aplicacion en el use case , dejar de usar ´sort´ y a cambio usar ´collectSortedList´, este ultimo es O(n), ya que solo necesita recorrer los elementos una vez para realizar la ordenación.
-
-Respecto a las mejoras , ya mencioné algunas respecto al algoritmo y respecto a otros aspecto me hubiera gustado tener más tiempo para explorar pruebas integración en el challenge , ya que solo se realizaron unitarias y de componente, tambien hacer uso de los properties para no tener definiciones hardcode en las clases.
 
 ## Note 
 
