@@ -1,5 +1,8 @@
 package com.visibility.application.use_cases;
 
+import com.visibility.application.product.ProductFilter;
+import com.visibility.application.product.filter.BackSoonFilter;
+import com.visibility.application.product.filter.SpecialSizeInStockOrBackSoonFilter;
 import com.visibility.domain.entities.product.Product;
 import com.visibility.domain.entities.product.ProductId;
 import com.visibility.domain.entities.product.ProductPriorityPosition;
@@ -16,6 +19,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -55,9 +60,10 @@ public class GetAvailableProductsOrderBySequenceTest {
 
         when(productRepository.retrieveAllProducts()).thenReturn(Flux.just(product1, product2,product3,product4,product5));
 
-        Flux<Product> resultFlux = getAvailableProductsOrderBySequence.execute(List.of());
-
-        var re = resultFlux.collectList().block();
+        List<ProductFilter> filters = new ArrayList<>();
+        filters.add(new BackSoonFilter());
+        filters.add(new SpecialSizeInStockOrBackSoonFilter());
+        Flux<Product> resultFlux = getAvailableProductsOrderBySequence.execute(filters);
 
         StepVerifier.create(resultFlux)
                 .expectNext(product5)
