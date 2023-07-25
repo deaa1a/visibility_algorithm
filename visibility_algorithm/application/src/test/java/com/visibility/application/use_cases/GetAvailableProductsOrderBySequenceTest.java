@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.when;
@@ -54,7 +55,7 @@ public class GetAvailableProductsOrderBySequenceTest {
 
         when(productRepository.retrieveAllProducts()).thenReturn(Flux.just(product1, product2,product3,product4,product5));
 
-        Flux<Product> resultFlux = getAvailableProductsOrderBySequence.execute();
+        Flux<Product> resultFlux = getAvailableProductsOrderBySequence.execute(List.of());
 
         var re = resultFlux.collectList().block();
 
