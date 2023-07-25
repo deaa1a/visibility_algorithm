@@ -17,42 +17,62 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
+        <!-- Dependencias de Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <!-- Dependencias de pruebas -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.0</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
-            <groupId>com.visibility</groupId>
-            <artifactId>domain</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>6.0.11</version>
+            <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>com.visibility</groupId>
-            <artifactId>application</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.visivility</groupId>
-            <artifactId>infrastructure</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
+        <!-- Dependencias del proyecto-->
+        <dependency>
+            <groupId>com.visibility</groupId>
+            <artifactId>domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.visibility</groupId>
+            <artifactId>application</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.visivility</groupId>
+            <artifactId>infrastructure</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test-autoconfigure</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

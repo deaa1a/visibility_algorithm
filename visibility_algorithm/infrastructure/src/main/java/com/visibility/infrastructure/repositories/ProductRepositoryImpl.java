@@ -1,5 +1,6 @@
 package com.visibility.infrastructure.repositories;
 
+import com.visibility.domain.exceptions.GetProductsException;
 import com.visibility.infrastructure.repositories.dto.ProductDto;
 import com.visibility.infrastructure.repositories.dto.SizeDto;
 import com.visibility.infrastructure.repositories.dto.StockDto;
@@ -12,6 +13,7 @@ import com.visibility.domain.entities.size.SizeId;
 import com.visibility.domain.entities.size.SizeQuantity;
 import com.visibility.domain.entities.size.SizeSpecial;
 import com.visibility.domain.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 
@@ -24,22 +26,30 @@ import static com.visibility.infrastructure.util.CsvReaderUtil.readCsvFile;
 
 @Repository
 public class ProductRepositoryImpl implements ProductRepository {
+
+
+    @Value("${app.productFilePath}")
+    private String productFilePath;
+
+    @Value("${app.sizeFilePath}")
+    private String sizeFilePath;
+
+    @Value("${app.stockFilePath}")
+    private String stockFilePath;
+
     @Override
     public Flux<Product> retrieveAllProducts() {
-        String productFilePath = getResourcePath("product.csv");
-        String sizeFilePath = getResourcePath("size.csv");
-        String stockFilePath = getResourcePath("stock.csv");
 
-
-        Flux<ProductDto> productFlux = readCsvFile(productFilePath, ProductDto.class);
-        Flux<SizeDto> sizeFlux = readCsvFile(sizeFilePath, SizeDto.class);
-        Flux<StockDto> stockFlux = readCsvFile(stockFilePath, StockDto.class);
+        Flux<ProductDto> productFlux = readCsvFile(getResourcePath(productFilePath), ProductDto.class);
+        Flux<SizeDto> sizeFlux = readCsvFile(getResourcePath(sizeFilePath), SizeDto.class);
+        Flux<StockDto> stockFlux = readCsvFile(getResourcePath(stockFilePath), StockDto.class);
 
         return Flux.zip(productFlux.collectList(), sizeFlux.collectList(), stockFlux.collectList())
-                .flatMapSequential(tuple -> Flux.fromIterable(generateResult(tuple.getT1(), tuple.getT2(), tuple.getT3())));
+                .flatMapSequential(tuple -> Flux.fromIterable(generateResult(tuple.getT1(), tuple.getT2(), tuple.getT3())))
+                .onErrorResume(ex -> Flux.error(new GetProductsException("Error reading file", ex)));
     }
 
-    private String getResourcePath(String fileName) {
+    private String getResourcePath(String fileName){
         ClassLoader classLoader = getClass().getClassLoader();
         return classLoader.getResource(fileName).getPath();
     }
