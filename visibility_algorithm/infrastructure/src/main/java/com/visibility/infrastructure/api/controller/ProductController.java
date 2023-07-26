@@ -27,7 +27,7 @@ public class ProductController {
         this.getAvailableProductsOrderBySequence = getAvailableProductsOrderBySequence;
     }
 
-    @GetMapping("/available")
+    @GetMapping()
     public ResponseEntity<Flux<ProductResponseDto>> getAvailableProducts() {
         List<ProductFilter> filters = new ArrayList<>();
         filters.add(new BackSoonFilter());
