@@ -40,7 +40,7 @@ public class ProductControllerIntegrationTest {
 
     @Test
     public void testGetAvailableProducts() {
-        webTestClient.get().uri("/api/v1/products/available")
+        webTestClient.get().uri("/api/v1/products")
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk()
